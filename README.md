@@ -18,6 +18,8 @@ page of the blog.
 These data should be cited as Lada A. Adamic and Natalie Glance, "The
 political blogosphere and the 2004 US Election", in Proceedings of the
 WWW-2005 Workshop on the Weblogging Ecosystem (2005).
+
+
 Number of nodes: 1222
 Number of edges: 16717
 
