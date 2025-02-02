@@ -3,6 +3,11 @@ Real datasets with binary attributes
 
 
 1) Politics Blogs       https://websites.umich.edu/~mejn/netdata/
+
+
+    Number of nodes: 1222
+    Number of edges: 16717
+
 A directed network of hyperlinks between weblogs on US politics. 
 Political blogosphere Feb. 2005
 Data compiled by Lada Adamic and Natalie Glance
@@ -19,8 +24,4 @@ These data should be cited as Lada A. Adamic and Natalie Glance, "The
 political blogosphere and the 2004 US Election", in Proceedings of the
 WWW-2005 Workshop on the Weblogging Ecosystem (2005).
 
-
-    Number of nodes: 1222
-    Number of edges: 16717
-
-3)
+2)
