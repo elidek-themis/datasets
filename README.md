@@ -43,4 +43,8 @@ Facebook.
 3) Books         https://websites.umich.edu/~mejn/netdata/
 
 
-A network of books about US politics where edges 1 between books represented co-purchasing.
+    Number of nodes: 92
+    Number of edges: 374
+
+
+A network of books about US politics where edges 1 between books represented co-purchasing. 13 neutral. 49 conservative. 43 liberal. We use the dataset without neutral nodes. 
