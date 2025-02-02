@@ -40,6 +40,7 @@ and an edge between two students indicates friendship on
 Facebook.   
 
 
+
 3) Books         https://websites.umich.edu/~mejn/netdata/
 
 
@@ -48,3 +49,7 @@ Facebook.
 
 
 A network of books about US politics where edges 1 between books represented co-purchasing. 13 neutral. 49 conservative. 43 liberal. We use the dataset without neutral nodes. 
+
+
+
+4) 
