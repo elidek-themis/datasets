@@ -38,3 +38,9 @@ WWW-2005 Workshop on the Weblogging Ecosystem (2005).
 This data set correspond to the contacts and friendship relations between students in a high school in Marseilles, France, in December 2013, as measured through several techniques.data set corresponds to the list of pairs of students for which the presence or absence of a Facebook friendship is known. Each line has the form “i j w”, where w=1 means that students i and j are linked on Facebook, while w=0 means that they are not. FACEBOOKNET consists of 155 vertices
 and an edge between two students indicates friendship on
 Facebook.   
+
+
+3) Books         https://websites.umich.edu/~mejn/netdata/
+
+
+A network of books about US politics where edges 1 between books represented co-purchasing.
