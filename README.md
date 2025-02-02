@@ -20,7 +20,7 @@ political blogosphere and the 2004 US Election", in Proceedings of the
 WWW-2005 Workshop on the Weblogging Ecosystem (2005).
 
 
-Number of nodes: 1222
-Number of edges: 16717
+    Number of nodes: 1222
+    Number of edges: 16717
 
 3)
