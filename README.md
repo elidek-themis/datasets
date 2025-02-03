@@ -64,4 +64,10 @@ A political retweet graph from "Ryan A. Rossi and Nesreen K. Ahmed. 2015.
 
 5) Drug net         https://sites.google.com/site/ucinetsoftware/datasets/covert-networks/drugnet
 
+   Number of nodes: 212
+    Number of edges: 284
+
+   Number of nodes in the largest connected component: 190
+Number of edges in the largest connected component: 270
+
 This is a dichotomous adjacency matrix of drug users in Hartford.  Ties are directed and represent acquaintanceship. The network is a result of two years of ethnographic observations of people's drug habits.
