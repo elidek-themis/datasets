@@ -52,4 +52,7 @@ A network of books about US politics where edges 1 between books represented co-
 
 
 
-4) 
+4) Twitter            https://networkrepository.com/
+
+
+A political retweet graph from "Ryan A. Rossi and Nesreen K. Ahmed. 2015.
