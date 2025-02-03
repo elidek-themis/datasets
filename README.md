@@ -3,8 +3,8 @@ Real datasets with Binary attributes.
 
 All dataset has 2 files: edges.txt and attributes.txt
 
-
-1) Politics Blogs       https://websites.umich.edu/~mejn/netdata/
+***
+1) **Politics Blogs**       https://websites.umich.edu/~mejn/netdata/
 
 
     Number of nodes: 1222
@@ -27,8 +27,8 @@ political blogosphere and the 2004 US Election", in Proceedings of the
 WWW-2005 Workshop on the Weblogging Ecosystem (2005).
 
 
-
-2)  FACEBOOK _NET        http://www.sociopatterns.org/datasets/high-school-contact-and-friendship-networks/
+***
+2)  **FACEBOOK _NET**        http://www.sociopatterns.org/datasets/high-school-contact-and-friendship-networks/
 
 
     Number of nodes: 156
@@ -40,8 +40,8 @@ and an edge between two students indicates friendship on
 Facebook.   
 
 
-
-3) Books         https://websites.umich.edu/~mejn/netdata/
+***
+3) **Books**         https://websites.umich.edu/~mejn/netdata/
 
 
     Number of nodes: 92
@@ -51,8 +51,8 @@ Facebook.
 A network of books about US politics where edges 1 between books represented co-purchasing. 13 neutral. 49 conservative. 43 liberal. We use the dataset without neutral nodes. 
 
 
-
-4) Twitter            https://networkrepository.com/
+***
+4) **Twitter**          https://networkrepository.com/
 
 Number of nodes: 18470
 Number of edges: 48053
@@ -61,13 +61,13 @@ Number of edges: 48053
 A political retweet graph from "Ryan A. Rossi and Nesreen K. Ahmed. 2015.
 
 
-
-5) Drug net         https://sites.google.com/site/ucinetsoftware/datasets/covert-networks/drugnet
+***
+5) **Drug net**        https://sites.google.com/site/ucinetsoftware/datasets/covert-networks/drugnet
 
    Number of nodes: 212
     Number of edges: 284
 
-   Number of nodes in the largest connected component: 190
+Number of nodes in the largest connected component: 190
 Number of edges in the largest connected component: 270
 
 This is a dichotomous adjacency matrix of drug users in Hartford.  Ties are directed and represent acquaintanceship. The network is a result of two years of ethnographic observations of people's drug habits.
