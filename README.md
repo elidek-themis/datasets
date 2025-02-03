@@ -6,7 +6,7 @@ Remove the nodes without attribute.
 All dataset has 2 files: edges.txt and attributes.txt
 
 ***
-1) **Politics Blogs**       https://websites.umich.edu/~mejn/netdata/
+1) **Politicals Blogs**       https://websites.umich.edu/~mejn/netdata/
 
 
     Number of nodes: 1222
