@@ -1,5 +1,7 @@
 # real_datasets 
 Real datasets with Binary attributes.
+We use the largest connected component.
+Remove the nodes without attribute.
 
 All dataset has 2 files: edges.txt and attributes.txt
 
