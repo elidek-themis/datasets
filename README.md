@@ -2,6 +2,7 @@
 Real datasets with Binary attributes.
 We use the largest connected component.
 Remove the nodes without attribute.
+Without self loop edges.
 
 All dataset has 2 files: edges.txt and attributes.txt
 
@@ -10,7 +11,7 @@ All dataset has 2 files: edges.txt and attributes.txt
 
 
     Number of nodes: 1222
-    Number of edges: 16717
+    Number of edges: 16714
 
 A directed network of hyperlinks between weblogs on US politics. 
 Political blogosphere Feb. 2005
