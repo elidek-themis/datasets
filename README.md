@@ -31,7 +31,7 @@ WWW-2005 Workshop on the Weblogging Ecosystem (2005).
 
 
 ***
-2)  **facebook_net**        http://www.sociopatterns.org/datasets/high-school-contact-and-friendship-networks/
+2)  **Facebook Net**        http://www.sociopatterns.org/datasets/high-school-contact-and-friendship-networks/
 
 
     Number of nodes: 156
@@ -78,7 +78,7 @@ This is a dichotomous adjacency matrix of drug users in Hartford.  Ties are dire
 
 
 ***
-6)  **friendship_net**        http://www.sociopatterns.org/datasets/high-school-contact-and-friendship-networks/
+6)  **Fiendship Net**        http://www.sociopatterns.org/datasets/high-school-contact-and-friendship-networks/
 
     Number of nodes: 134
     Number of edges: 406
