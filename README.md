@@ -31,7 +31,7 @@ WWW-2005 Workshop on the Weblogging Ecosystem (2005).
 
 
 ***
-2)  **FACEBOOK _NET**        http://www.sociopatterns.org/datasets/high-school-contact-and-friendship-networks/
+2)  **facebook_net**        http://www.sociopatterns.org/datasets/high-school-contact-and-friendship-networks/
 
 
     Number of nodes: 156
@@ -74,3 +74,18 @@ Number of nodes in the largest connected component: 190
 Number of edges in the largest connected component: 270
 
 This is a dichotomous adjacency matrix of drug users in Hartford.  Ties are directed and represent acquaintanceship. The network is a result of two years of ethnographic observations of people's drug habits.
+
+
+
+***
+6)  **friendship_net**        http://www.sociopatterns.org/datasets/high-school-contact-and-friendship-networks/
+
+    Number of nodes: 134
+    Number of edges: 406
+
+Number of nodes in the largest connected component: 128
+Number of edges in the largest connected component: 401
+
+
+The third data set corresponds to the directed network of reported friendships. Each line has the form “i j”, meaning that student i reported a friendship with student j.
+
