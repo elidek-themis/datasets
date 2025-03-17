@@ -80,7 +80,7 @@ This is a dichotomous adjacency matrix of drug users in Hartford.  Ties are dire
 ***
 6)  **Fiendship Net**        http://www.sociopatterns.org/datasets/high-school-contact-and-friendship-networks/
 
-    Number of nodes: 134
+    Number of nodes: 128
     Number of edges: 406
 
 Number of nodes in the largest connected component: 128
