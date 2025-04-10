@@ -89,10 +89,14 @@ Number of edges in the largest connected component: 401
 
 The third data set corresponds to the directed network of reported friendships. Each line has the form “i j”, meaning that student i reported a friendship with student j.
 
-
+***
 7) **Facebook ego**     https://snap.stanford.edu/data/ego-Facebook.html
    
     Number of nodes: 4039
     Number of edges: 88234
    same characteristics as the largerst connected component. 
 This dataset consists of 'circles' (or 'friends lists') from Facebook. Facebook data was collected from survey participants using this Facebook app. The dataset includes node features (profiles), circles, and ego networks. Protected attribute = gender.
+
+***
+
+8) ** **
