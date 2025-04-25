@@ -110,6 +110,8 @@ The graph is DISCONNECTED
 - Number of components: 3
 - Largest component size: 127 nodes
 - Fraction in largest component: 95.49%
+- Number of nodes in the largest connected component: 127
+Number of edges in the largest connected component: 396
 
 Graph with gender attributes saved to 'fb_net_with_gender.gml'
 
