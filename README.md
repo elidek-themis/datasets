@@ -147,3 +147,6 @@ Number of nodes after removing nodes without attributes: 28281
 Number of nodes in the largest connected component: 28281
 Number of edges in the largest connected component: 92752
    
+Gender distribution:
+- Female (1): 12538 nodes
+- Male (0): 15743 nodes
