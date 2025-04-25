@@ -28,6 +28,14 @@ page of the blog.
 These data should be cited as Lada A. Adamic and Natalie Glance, "The
 political blogosphere and the 2004 US Election", in Proceedings of the
 WWW-2005 Workshop on the Weblogging Ecosystem (2005).
+The graph is DISCONNECTED
+- Number of components: 268
+- Largest component size: 1222 nodes
+- Fraction in largest component: 82.01%
+Number of edges in largest component: 16714
+Gender distribution:
+- Female (1): 732 nodes
+- Male (0): 758 nodes
 
 
 ***
