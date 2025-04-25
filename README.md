@@ -139,4 +139,11 @@ This dataset consists of 'circles' (or 'friends lists') from Facebook. Facebook 
 
 ***
 
-8) ** **
+8) **Deezer Europe **
+   https://snap.stanford.edu/data/feather-deezer-social.html
+Number of nodes: 28281
+Number of edges: 92752
+Number of nodes after removing nodes without attributes: 28281
+Number of nodes in the largest connected component: 28281
+Number of edges in the largest connected component: 92752
+   
