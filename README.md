@@ -97,12 +97,25 @@ This is a dichotomous adjacency matrix of drug users in Hartford.  Ties are dire
 ***
 6)  **Fiendship Net**        http://www.sociopatterns.org/datasets/high-school-contact-and-friendship-networks/   third one!!
 
-    Number of nodes: 134
-    Number of edges: 406
+Initial graph:
+- Nodes: 134
+- Edges: 406
 
-Number of nodes in the largest connected component: 128
-Number of edges in the largest connected component: 401
+After gender attribute processing:
+- Removed 1 nodes without gender data
+- Remaining nodes: 133
+- Remaining edges: 401
 
+The graph is DISCONNECTED
+- Number of components: 3
+- Largest component size: 127 nodes
+- Fraction in largest component: 95.49%
+
+Graph with gender attributes saved to 'fb_net_with_gender.gml'
+
+Gender distribution:
+- Female (1): 79 nodes
+- Male (0): 54 nodes
 
 The third data set corresponds to the directed network of reported friendships. Each line has the form “i j”, meaning that student i reported a friendship with student j.
 
