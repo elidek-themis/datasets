@@ -42,6 +42,23 @@ This data set correspond to the contacts and friendship relations between studen
 and an edge between two students indicates friendship on
 Facebook.  The fourth data set 
 
+Initial graph:
+- Nodes: 156
+- Edges: 1437
+
+After gender attribute processing:
+- Removed 1 nodes without gender data
+- Remaining nodes: 155
+- Remaining edges: 1412
+
+The graph is CONNECTED
+
+Graph with gender attributes saved to 'fb_net_with_gender.gml'
+
+Gender distribution:
+- Female (1): 70 nodes
+- Male (0): 85 nodes
+
 
 ***
 3) **Books**         https://websites.umich.edu/~mejn/netdata/
