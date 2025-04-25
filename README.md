@@ -84,7 +84,9 @@ A network of books about US politics where edges 1 between books represented co-
 
     Number of nodes: 18470
     Number of edges: 48053
-
+distribution:
+- (1): 11355 nodes
+- (0): 7115 nodes
 
 A political retweet graph from "Ryan A. Rossi and Nesreen K. Ahmed. 2015.
 
