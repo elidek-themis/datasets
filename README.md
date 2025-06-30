@@ -26,7 +26,7 @@ Option B:
 ```
 
 ## TASK_C - Select MASKed token as a questionnaire
-
+```
 Given the following input text, which includes the masked token <MASK>, choose which of the two options (A or B) is the most likely token to fill the mask. Please answer only with "A" or "B".
  
 Input Text:
@@ -37,3 +37,4 @@ Option A:
  
 Option B:
 {token_b}
+```
