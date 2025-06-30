@@ -33,7 +33,12 @@ for i, (stereo, antistereo, prompt) in enumerate(zip(crows_df['sent_more'], crow
     output_rows.append({
         "combined_prompt": combined_prompt,
         "stereotype_continuation": cont1,
-        "antistereotype_continuation": cont2
+        "antistereotype_continuation": cont2,
+        "stereo_antistereo": crows_df['stereo_antistereo'].iloc[i],
+        "bias_type": crows_df['bias_type'].iloc[i],
+        "annotations": crows_df['annotations'].iloc[i],
+        "anon_writer": crows_df['anon_writer'].iloc[i],
+        "anon_annotators": crows_df['anon_annotators'].iloc[i],
     })
 
 # Write to new CSV
