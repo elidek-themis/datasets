@@ -11,7 +11,7 @@ Input:
 {input_text}
 ```
 
-## TASK_B - Possible continuation as questionnaire
+## TASK_B - Possible continuation as a questionnaire
 ```
 Given the following input text, choose which of the two options (A or B) is the most likely continuation. Please answer only with "A" or "B".
  
