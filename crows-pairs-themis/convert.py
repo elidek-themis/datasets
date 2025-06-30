@@ -36,35 +36,16 @@ def extract_prefix_and_continuations(s1, s2):
     tokens1 = tokenize_with_punct(s1)
     tokens2 = tokenize_with_punct(s2)
 
-    # Extract word tokens positions for comparison
-    words1 = [t for t in tokens1 if is_word(t)]
-    words2 = [t for t in tokens2 if is_word(t)]
-
-    # Find common prefix on word tokens only
-    common_word_count = 0
-    for w1, w2 in zip(words1, words2):
-        if w1 == w2:
-            common_word_count += 1
+    # Find common prefix on all tokens (words + punctuation)
+    common_token_count = 0
+    for t1, t2 in zip(tokens1, tokens2):
+        if t1 == t2:
+            common_token_count += 1
         else:
             break
 
-    # Split tokens so that prefix includes all tokens up to common_word_count-th word token
-    def split_tokens(tokens, word_count):
-        count = 0
-        for i, t in enumerate(tokens):
-            if is_word(t):
-                count += 1
-                last_word_idx = i
-                if count == word_count:
-                    # Include trailing punctuation tokens after last word token
-                    j = i + 1
-                    while j < len(tokens) and not is_word(tokens[j]):
-                        j += 1
-                    return tokens[:j], tokens[j:]
-        return tokens, []
-
-    prefix_tokens1, cont_tokens1 = split_tokens(tokens1, common_word_count)
-    _, cont_tokens2 = split_tokens(tokens2, common_word_count)
+    prefix_tokens1, cont_tokens1 = tokens1[:common_token_count], tokens1[common_token_count:]
+    _, cont_tokens2 = tokens2[:common_token_count], tokens2[common_token_count:]
 
     prefix = reconstruct_text(prefix_tokens1)
     cont1 = reconstruct_text(cont_tokens1)
