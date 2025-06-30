@@ -31,7 +31,7 @@ for i, (stereo, antistereo, prompt) in enumerate(zip(crows_df['sent_more'], crow
     prefix, cont1, cont2 = extract_prefix_and_continuations(stereo, antistereo)
     combined_prompt = f"{prompt.strip()} {prefix}"  # make sure spacing is clean
     output_rows.append({
-        "combined_prompt": combined_prompt,
+        "input": combined_prompt,
         "stereotype_continuation": cont1,
         "antistereotype_continuation": cont2,
         "stereo_antistereo": crows_df['stereo_antistereo'].iloc[i],
