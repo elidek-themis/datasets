@@ -1,53 +1,105 @@
 import pandas as pd
 import re
-import os
 
-def tokenize(text):
-    """Tokenize text into words and punctuation separately."""
-    return re.findall(r"\w+|[^\w\s]", text)
+def tokenize_with_punct(text):
+    """
+    Tokenize text into words, contractions, and punctuation separately.
+    Contractions like "don't", "couldn't" are single tokens.
+    """
+    # Regex explanation:
+    # \w+('\w+)? matches words with optional apostrophe contractions: e.g. don't, couldn't
+    # |[^\w\s] matches any single punctuation char (not word or space)
+    return re.findall(r"\w+(?:'\w+)?|[^\w\s]", text)
+
+def reconstruct_text(tokens):
+    text = ""
+    for i, token in enumerate(tokens):
+        if i == 0:
+            text += token
+        else:
+            # Treat <MASK> as a special word token
+            if token == "<MASK>":
+                text += " " + token
+            elif re.match(r"[^\w\s]", token):
+                # punctuation → no space before it
+                text += token
+            else:
+                # regular word → space before it
+                text += " " + token
+    return text
+
+def is_word(token):
+    """Return True if token is a word or contraction (e.g., don't), False otherwise."""
+    return bool(re.match(r"\w+(?:'\w+)?$", token))
 
 def extract_prefix_and_continuations(s1, s2):
-    tokens1 = tokenize(s1)
-    tokens2 = tokenize(s2)
-    common_tokens = []
-    for t1, t2 in zip(tokens1, tokens2):
-        if t1 == t2:
-            common_tokens.append(t1)
+    tokens1 = tokenize_with_punct(s1)
+    tokens2 = tokenize_with_punct(s2)
+
+    # Extract word tokens positions for comparison
+    words1 = [t for t in tokens1 if is_word(t)]
+    words2 = [t for t in tokens2 if is_word(t)]
+
+    # Find common prefix on word tokens only
+    common_word_count = 0
+    for w1, w2 in zip(words1, words2):
+        if w1 == w2:
+            common_word_count += 1
         else:
             break
-    prefix = " ".join(common_tokens).strip()
-    cont1 = " ".join(tokens1[len(common_tokens):]).strip()
-    cont2 = " ".join(tokens2[len(common_tokens):]).strip()
-    return prefix, cont1, cont2
+
+    # Split tokens so that prefix includes all tokens up to common_word_count-th word token
+    def split_tokens(tokens, word_count):
+        count = 0
+        for i, t in enumerate(tokens):
+            if is_word(t):
+                count += 1
+            if count == word_count:
+                # Include punctuation after last matched word token
+                return tokens[:i+1], tokens[i+1:]
+        return tokens, []
+
+    prefix_tokens1, cont_tokens1 = split_tokens(tokens1, common_word_count)
+    _, cont_tokens2 = split_tokens(tokens2, common_word_count)
+
+    prefix = reconstruct_text(prefix_tokens1)
+    cont1 = reconstruct_text(cont_tokens1)
+    cont2 = reconstruct_text(cont_tokens2)
+
+    return prefix.strip(), cont1.strip(), cont2.strip()
 
 def extract_masked_and_tokens(s1, s2):
-    tokens1 = tokenize(s1)
-    tokens2 = tokenize(s2)
+    tokens1 = tokenize_with_punct(s1)
+    tokens2 = tokenize_with_punct(s2)
 
-    # Find the first word token where they differ (skip punct differences)
-    for i, (t1, t2) in enumerate(zip(tokens1, tokens2)):
-        if t1 != t2 and re.match(r"\w+", t1) and re.match(r"\w+", t2):
+    # Get indices of word tokens in tokens1
+    word_indices1 = [i for i, t in enumerate(tokens1) if is_word(t)]
+    word_indices2 = [i for i, t in enumerate(tokens2) if is_word(t)]
+
+    # Loop over word tokens only
+    for idx1, idx2 in zip(word_indices1, word_indices2):
+        if tokens1[idx1] != tokens2[idx2]:
             masked_tokens = tokens1.copy()
-            masked_tokens[i] = '<MASK>'
-            masked = " ".join(masked_tokens)
-            return masked, t1, t2
+            masked_tokens[idx1] = '<MASK>'
+            masked = reconstruct_text(masked_tokens)
+            return masked, tokens1[idx1], tokens2[idx2]
+
     # No differing word found
     return s1, '', ''
 
-# === Read input files ===
+# === Example usage for CSV processing ===
 crows_df = pd.read_csv('data/crows_pairs_anonymized.csv')
 prompts_df = pd.read_csv('data/prompts.csv')
 
 assert len(crows_df) == len(prompts_df), "Mismatch in number of rows between the two CSVs"
 
-# === CONTINUATION-STYLE OUTPUT ===
 continuation_rows = []
-
 for i, (stereo, antistereo, prompt) in enumerate(zip(crows_df['sent_more'], crows_df['sent_less'], prompts_df['prompt'])):
+
     prefix, cont1, cont2 = extract_prefix_and_continuations(stereo, antistereo)
-    combined_prompt = f"{prompt.strip()} {prefix}".strip()
+    input_text = f"{prompt} {prefix}".strip()
     continuation_rows.append({
-        "input": combined_prompt,
+        "input": input_text,
         "stereotype_continuation": cont1,
         "antistereotype_continuation": cont2,
         "stereo_antistereo": crows_df['stereo_antistereo'].iloc[i],
@@ -58,16 +110,16 @@ for i, (stereo, antistereo, prompt) in enumerate(zip(crows_df['sent_more'], crow
     })
 
 continuation_df = pd.DataFrame(continuation_rows)
-continuation_df.to_csv('data/continuations_original.csv', index=False)
-print("Continuation-style output written to data/continuations_original.csv")
+continuation_df.to_csv('data/continuations.csv', index=False)
+print("Continuation-style output written to data/continuations.csv")
 
-# === MASKED-STYLE OUTPUT ===
 masked_rows = []
+for i, (stereo, antistereo, prompt) in enumerate(zip(crows_df['sent_more'], crows_df['sent_less'], prompts_df['prompt'])):
 
-for i, (stereo, antistereo) in enumerate(zip(crows_df['sent_more'], crows_df['sent_less'])):
-    masked_input, token1, token2 = extract_masked_and_tokens(stereo, antistereo)
+    input_text, token1, token2 = extract_masked_and_tokens(stereo, antistereo)
+    input_text = f"{prompt} {input_text}".strip()
     masked_rows.append({
-        "masked_input": masked_input,
+        "input": input_text,
         "stereotype_token": token1,
         "antistereotype_token": token2,
         "stereo_antistereo": crows_df['stereo_antistereo'].iloc[i],
