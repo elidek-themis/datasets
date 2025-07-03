@@ -11,3 +11,4 @@ wheels/
 
 # Development
 notebooks/prototyping.ipynb
+.env
