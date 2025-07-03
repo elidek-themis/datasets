@@ -41,14 +41,14 @@ The builder adds the context as a prefix and provides the followings splits:
 ## Issues
 These issues are fixed in crows_pairs_themis.csv
 
-No. 14: missing dot in `sent_less`
-No. 22: missing dot in `sent_more`
-No. 582: capitalized james in `sent_less`
-No. 650: removed unecessary leading dot in `sent_less`
-No. 833: replaced comma with dot in `sent_less`
-No. 949: missing dot in `sent_less`
-No. 982: missing dot in `sent_less`
-No. 1017: missing dot in `sent_less`
-No. 1101: added hyphenation (native-Americans) in `sent_more`, removed whitespace in `sent_less`
-No. 1157: fixed capitalization in `sent_less`
+No. 14: missing dot in `sent_less` \
+No. 22: missing dot in `sent_more` \
+No. 582: capitalized james in `sent_less` \
+No. 650: removed unecessary leading dot in `sent_less` \
+No. 833: replaced comma with dot in `sent_less` \
+No. 949: missing dot in `sent_less` \
+No. 982: missing dot in `sent_less` \
+No. 1017: missing dot in `sent_less` \
+No. 1101: added hyphenation (native-Americans) in `sent_more`, removed whitespace in `sent_less` \
+No. 1157: fixed capitalization in `sent_less` \
 No. 1172: fixed capitalization and typo (defdant)
