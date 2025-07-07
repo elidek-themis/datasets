@@ -212,7 +212,7 @@ class CrowsPairsPrompts(datasets.GeneratorBasedBuilder):
                 {
                     # "sent_more": row["sent_more"],
                     # "sent_less": row["sent_less"],
-                    "prompt": affix.to_template(mask_token=mask)["template"],
+                    "prompt": row["prompt"] + " " + affix.to_template(mask_token=mask)["template"],
                     "choices": (affix.infix_1, affix.infix_2),
                     "stereo_antistereo": row["stereo_antistereo"],
                     "bias_type": row["bias_type"],
