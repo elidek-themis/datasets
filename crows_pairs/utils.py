@@ -31,9 +31,10 @@ def tokenize(text: str) -> list[Token]:
         \s+                       |  # whitespace
         \#\d+                     |  # hashtags or numeric IDs (e.g., #12345)
         \$[\d,]+(?:\.\d{1,2})?    |  # prices (e.g., $1,000.99 or $25.50)
+        ,                         |  
         \w+(?:-\w+)*              |  # hyphens (e.g., state-of-the-art)
-        \w+(?:'\w+)?              |  # contractions (e.g., isn't, don't) and possessives
-        [^\w\s]                   |  # punctuation (single non-word non-space)
+        \w+(?:'\w+)?              |  # contractions (e.g., isn't, don't)
+        [^\w\s]                   |  # other punctuation
         \S                           # fallback
     """
     return [
