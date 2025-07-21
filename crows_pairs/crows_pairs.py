@@ -1,4 +1,4 @@
-# Copyright 2020 The HuggingFace Datasets Authors.
+# Copyright 2020 The HuggingFace Datasets Authors and the current dataset script contributor.
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -11,13 +11,12 @@
 # WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 # See the License for the specific language governing permissions and
 # limitations under the License.
-#
-# This work contains adaptations of the original CrowS-Pairs dataset,
-# used under Apache License 2.0. Modifications include adding the prompt
-# along with the stereotype and anti-stereotype sentences. The dataset
+
+# This work contains adaptations of the revised CrowS-Pairs dataset,
+# used under under a Creative Commons Attribution-ShareAlike 4.0 International License.
+# Modifications include adding two additional splits. The dataset
 # is further used to audit the performance of autoregressive language
 # models in multiple-choice and generation tasks.
-"""CrowS-Pairs: A Challenge Dataset for Measuring Social Biases in Masked Language Models"""
 
 import csv
 import json
@@ -25,45 +24,40 @@ from pathlib import Path
 from typing import Any
 import pandas as pd
 import datasets
-
 from .utils import get_differences
 
+
+import csv
+import json
+import os
+import pandas as pd
+
+import datasets
+
 _CITATION = """\
-@inproceedings{nangia2020crows,
-    title = "{CrowS-Pairs: A Challenge Dataset for Measuring Social Biases in Masked Language Models}",
-    author = "Nangia, Nikita  and
-      Vania, Clara  and
-      Bhalerao, Rasika  and
-      Bowman, Samuel R.",
-    booktitle = "Proceedings of the 2020 Conference on Empirical Methods in Natural Language Processing",
-    month = nov,
-    year = "2020",
-    address = "Online",
-    publisher = "Association for Computational Linguistics"
+@inproceedings{neveol2022french,
+  title={French CrowS-Pairs: Extending a challenge dataset for measuring social bias in masked language models to a language other than English},
+  author={N{\'e}v{\'e}ol, Aur{\'e}lie and Dupont, Yoann and Bezan{\c{c}}on, Julien and Fort, Kar{\"e}n},
+  booktitle={ACL 2022-60th Annual Meeting of the Association for Computational Linguistics},
+  year={2022}
 }
 """
-# ruff: noqa: E501
+
 _DESCRIPTION = """\
-CrowS-Pairs, a challenge dataset for measuring the degree to which U.S. stereotypical biases present in the masked language models (MLMs).
+This is a revised version of CrowS-Pairs that measures stereotypes in language modelling in both English and French.
 """
 
-_URL = ["https://raw.githubusercontent.com/nyu-mll/crows-pairs/master/data/crows_pairs_anonymized.csv"]
+_HOMEPAGE = "https://gitlab.inria.fr/french-crows-pairs/acl-2022-paper-data-and-code/-/tree/main"
 
-_BIAS_TYPES = [
-    "race-color",
-    "socioeconomic",
-    "gender",
-    "disability",
-    "nationality",
-    "sexual-orientation",
-    "physical-appearance",
-    "religion",
-    "age",
-]
+_LICENSE = "French CrowS-Pairs is licensed under a Creative Commons Attribution-ShareAlike 4.0 International License. It is created using material developed by the authors of the Crows-Pairs corpus (Nangia et al. 2020)"
 
-_STEREOTYPICAL_DIRECTIONS = ["stereo", "antistereo"]
+_URLS = {
+    "english": "https://gitlab.inria.fr/french-crows-pairs/acl-2022-paper-data-and-code/-/raw/main/data/crows_pairs_EN_revised+210.csv",
+    "french": "https://gitlab.inria.fr/french-crows-pairs/acl-2022-paper-data-and-code/-/raw/main/data/crows_pairs_FR_languagearc_contribution+210.csv",
+}
 
-class CrowsPairsThemisConfig(datasets.BuilderConfig):
+
+class CrowsPairsConfig(datasets.BuilderConfig):
     def __init__(
         self,
         mask_token: str,
@@ -74,173 +68,120 @@ class CrowsPairsThemisConfig(datasets.BuilderConfig):
         self.mask_token = mask_token
         self.min_mask_size = min_mask_size
 
+
 class CrowsPairsPrompts(datasets.GeneratorBasedBuilder):
     "CrowS-Pairs: A Challenge Dataset for Measuring Social Biases in Masked Language Models"
 
+    VERSION = datasets.Version("1.2.0")
+
     BUILDER_CONFIGS = [
-        datasets.BuilderConfig(
-            name="crows_pairs",
-            version=datasets.Version("1.0.0", ""),
-        ),
-        CrowsPairsThemisConfig(
-            name="themis",
+        CrowsPairsConfig(
+            name="english",
             mask_token="<MASK>",
             min_mask_size=50,
-            version=datasets.Version("2.0.0", "")
+            version=VERSION,
+            description="English CrowS-Pairs",
+        ),
+        CrowsPairsConfig(
+            name="french",
+            mask_token="<MASK>",
+            min_mask_size=50,
+            version=VERSION,
+            description="French CrowS-Pairs",
         ),
     ]
 
-    DEFAULT_CONFIG_NAME = "themis"
+    DEFAULT_CONFIG_NAME = "english"
 
     def _info(self):
-        if self.config.name == "crows_pairs":
-            return datasets.DatasetInfo(
-                description=_DESCRIPTION,
-                features=datasets.Features(
-                    {
-                        "id": datasets.Value("int32"),
-                        "sent_more": datasets.Value("string"),
-                        "sent_less": datasets.Value("string"),
-                        "stereo_antistereo": datasets.ClassLabel(names=_STEREOTYPICAL_DIRECTIONS),
-                        "bias_type": datasets.ClassLabel(names=_BIAS_TYPES),
-                        "annotations": datasets.Sequence(datasets.Sequence(datasets.ClassLabel(names=_BIAS_TYPES))),
-                        "anon_writer": datasets.Value("string"),
-                        "anon_annotators": datasets.Sequence(datasets.Value("string")),
-                    },
-                ),
-                supervised_keys=None,
-                citation=_CITATION,
-                homepage="https://github.com/nyu-mll/crows-pairs",
-            )
-            
-        if self.config.name == "themis":
-            return datasets.DatasetInfo(
-                description=_DESCRIPTION,
-                features=datasets.Features(
-                    {
-                        "prompt": datasets.Value("string"),
-                        # "sent_more": datasets.Value("string"),
-                        # "sent_less": datasets.Value("string"),
-                        "choices": datasets.Sequence(datasets.Value("string")),
-                        "stereo_antistereo": datasets.Value("string"),
-                        "bias_type": datasets.Value("string"),
-                    }
-                ),
-                citation=_CITATION,
-            )        
+        features = datasets.Features(
+            {
+                "template": datasets.Value("string"),
+                "sent_more": datasets.Value("string"),
+                "sent_less": datasets.Value("string"),
+                "stereo_antistereo": datasets.Value("string"),
+                "bias_type": datasets.Value("string"),
+            }
+        )
+
+        return datasets.DatasetInfo(
+            description=_DESCRIPTION,
+            features=features,
+            homepage=_HOMEPAGE,
+            license=_LICENSE,
+            citation=_CITATION,
+        )
 
     def _split_generators(self, dl_manager):
-        if self.config.name == "crows_pairs":
-            filepath = dl_manager.download(_URL)
-            return [
-                datasets.SplitGenerator(name=datasets.Split.TEST, gen_kwargs={"filepath": filepath}),
-            ] 
-        elif self.config.name == "themis":            
-            filepaths = [Path("data") / "crows_pairs_themis.csv", Path("data") / "prompts.csv"]
-            data_files = dl_manager.download_and_extract(filepaths)
-            
-            return [
-                datasets.SplitGenerator(
-                    name="default",
-                    gen_kwargs={"filepaths": data_files, "split": "default"},
-                ),
-                datasets.SplitGenerator(
-                    name="common_prefix",
-                    gen_kwargs={"filepaths": data_files, "split": "common_prefix"},
-                ),
-                datasets.SplitGenerator(
-                    name="mask",
-                    gen_kwargs={"filepaths": data_files, "split": "mask"},
-                ),
-            ]
+        urls = _URLS[self.config.name]
+        data_file = dl_manager.download_and_extract(urls)
 
-    
-    def _generate_test_split(self, filepath):
-        with open(filepath, encoding="utf-8") as f:
-            rows = csv.DictReader(f)
-            for i, row in enumerate(rows):
-                row["annotations"] = json.loads(row["annotations"].replace("'", '"'))
-                row["anon_annotators"] = json.loads(row["anon_annotators"].replace("'", '"'))
-                row["id"] = int(row.pop(""))
-                yield i, row
-                
-    
-    def _generate_default_split(self, df):
+        return [
+            datasets.SplitGenerator(
+                name=datasets.Split.TEST,
+                gen_kwargs={"filepath": data_file, "split": "test"},
+            ),
+            datasets.SplitGenerator(
+                name="common_prefix",
+                gen_kwargs={"filepath": data_file, "split": "common_prefix"},
+            ),
+            datasets.SplitGenerator(
+                name="mask",
+                gen_kwargs={"filepath": data_file, "split": "mask"},
+            ),
+        ]
+
+    def _generate_test_split(self, df):
         for key, row in enumerate(df.to_dict(orient="records")):
-            choices = [row["sent_more"], row["sent_less"]]
-            yield (
-                key,
-                {
-                    # "sent_more": row["sent_more"],
-                    # "sent_less": row["sent_less"],
-                    "prompt": row["prompt"],
-                    "choices": choices,
-                    "stereo_antistereo": row["stereo_antistereo"],
-                    "bias_type": row["bias_type"],
-                },
-            )
-            
-    
+            yield key, {"template": ""} | row
+
     def _generate_common_prefix_split(self, df):
         for key, row in enumerate(df.to_dict(orient="records")):
             affix = get_differences(sent_1=row["sent_more"], sent_2=row["sent_less"])
             yield (
                 key,
                 {
-                    # "sent_more": row["sent_more"],
-                    # "sent_less": row["sent_less"],
-                    "prompt": row["prompt"] + " " + affix.prefix,
-                    "choices": (affix.infix_1 + affix.suffix, affix.infix_2 + affix.suffix),
+                    "template": affix.prefix,
+                    "sent_more": affix.infix_1 + " " + affix.suffix,
+                    "sent_less": affix.infix_2 + " " + affix.suffix,
                     "stereo_antistereo": row["stereo_antistereo"],
                     "bias_type": row["bias_type"],
                 },
             )
-            
-    
+
     def _generate_mask_split(self, df):
-        def skip_condition(affix):
-            return any(len(infix.split()) > min_mask_size for infix in (affix.infix_1, affix.infix_2))
-        
+        def skip_condition(affix, min_mask_size):
+            is_min_len = any(
+                len(infix.split()) > min_mask_size
+                for infix in (affix.infix_1, affix.infix_2)
+            )
+            is_empty = not all((affix.infix_1, affix.infix_2))
+            return is_min_len or is_empty
+
         mask = self.config.mask_token
         min_mask_size = self.config.min_mask_size
-        
+
         for key, row in enumerate(df.to_dict(orient="records")):
-            affix = get_differences(sent_1=row["sent_more"], sent_2=row["sent_less"])    
-            if skip_condition(affix): continue  # noqa: E701
+            affix = get_differences(sent_1=row["sent_more"], sent_2=row["sent_less"])
+            if skip_condition(affix, min_mask_size):
+                continue  # noqa: E701
             yield (
                 key,
                 {
-                    # "sent_more": row["sent_more"],
-                    # "sent_less": row["sent_less"],
-                    "prompt": row["prompt"] + " " + affix.to_template(mask_token=mask)["template"],
-                    "choices": (affix.infix_1, affix.infix_2),
+                    "template": affix.to_template(mask_token=mask)["template"],
+                    "sent_more": affix.infix_1,
+                    "sent_less": affix.infix_2,
                     "stereo_antistereo": row["stereo_antistereo"],
                     "bias_type": row["bias_type"],
                 },
-            )             
-            
-    
-    def _generate_examples(self, **kwargs):
-        if self.config.name == "crows_pairs":
-            filepath = kwargs.pop("filepath", None)
-            return self._generate_test_split(filepath)
-        
-        elif self.config.name == "themis":
-            filepaths = kwargs.pop("filepaths", None)
-            split = kwargs.pop("split", None)
-            
-            cols = ["sent_more", "sent_less", "stereo_antistereo", "bias_type"]
+            )
 
-            data_path, prompts_path = filepaths
+    def _generate_examples(self, filepath: str, split: str):
+        df = pd.read_csv(filepath, sep="\t", index_col=0)
 
-            df = pd.read_csv(data_path, usecols=cols)
-            prompts = pd.read_csv(prompts_path)["prompt"]
-            df = pd.concat([df, prompts], axis=1)
-            
-            if split == "default":
-                return self._generate_default_split(df)
-            elif split == "common_prefix":
-                return self._generate_common_prefix_split(df)
-            elif split == "mask":
-                return self._generate_mask_split(df)
-
+        if split == "test":
+            return self._generate_test_split(df=df)
+        elif split == "common_prefix":
+            return self._generate_common_prefix_split(df=df)
+        elif split == "mask":
+            return self._generate_mask_split(df=df)
