@@ -45,7 +45,7 @@ class CrowsPairsPrompts(datasets.GeneratorBasedBuilder):
     BUILDER_CONFIGS = [
         CrowsPairsConfig(
             name="english",
-            mask_token="<MASK>",
+            mask_token="BLANK",
             min_mask_size=50,
             version=VERSION,
             description="English CrowS-Pairs",
