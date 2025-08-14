@@ -1,7 +1,7 @@
-# Real Datasets 
-Real datasets with Binary attributes.
-We use the largest connected component.
-Remove the nodes without attribute.
-Without self loop edges.
+Real-world network datasets with binary node attributes.
+For each dataset, we extract the largest connected component, remove all nodes lacking attribute information, and eliminate self-loop edges.
+Each dataset is provided in two files:
 
-All dataset has 2 files: edges.txt and attributes.txt
+edges.txt — list of edges in the network
+
+attributes.txt — binary attribute values for each node
