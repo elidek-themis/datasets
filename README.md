@@ -64,6 +64,8 @@ These datasets evaluate model biases in question-answering tasks, where models a
 
 ## Graph Datasets
 
+Several real-world network datasets with binary node attributes. For each dataset, we extract the largest connected component, remove nodes without attribute information, and eliminate self-loops.
+
 | **Dataset**                   | **Nodes** | **Edges** | **Protected Attribute(s)** | **Description**                                                                                                                                 | **Source**                                                                                                                                                               |
 | ----------------------------- | --------: | --------: | -------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
 | **Political Blogs**           |      1222 |     16714 | Political leaning          | Directed hyperlinks between US political blogs (Feb 2005). Labels: 0 = liberal, 1 = conservative.                                               | [Link](https://websites.umich.edu/~mejn/netdata/)                                                                                  |
