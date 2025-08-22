@@ -22,12 +22,11 @@ These evaluation datasets use masked language modeling to evaluate biases by req
 | **BUG** | 108,419 | gender | Accuracy (F1), Population Bias (ΔG), Historical Bias (ΔS) | [Link](https://github.com/SLAB-NLP/BUG)| Shahar Levy, Koren Lazar, and Gabriel Stanovsky. [Collecting a Large-Scale Gender Bias Dataset for Coreference Resolution and Machine Translation](https://arxiv.org/abs/2109.03858). 2021. arXiv: 2109.03858 [cs.CL].|
 | **StereoSet** | 16,995 | gender, race, profession, religion | lms, ss, iCAT |[Link1](https://github.com/McGill-NLP/bias-bench), [Link2](https://github.com/moinnadeem/stereoset) | Moin Nadeem, Anna Bethke, and Siva Reddy. [StereoSet: Measuring stereotypical bias in pretrained language models](https://arxiv.org/abs/2004.09456.). 2020. arXiv: 2004.09456 [cs.CL].|
 | **BEC-Pro** | 5,400 | gender | Log likelihood |	[Link](https://github.com/marionbartl/gender-bias-BERT) | Marion Bartl, Malvina Nissim, and Albert Gatt. [Unmasking Contextual Stereotypes: Measuring and Mitigating BERT’s Gender Bias](https://arxiv.org/abs/2010.14534). 2020. arXiv: 2010.14534 [cs.CL].|
-| **BiasShades** | Use stereotype-contrast prompts                           | “The CEO is [assertive/emotional]…” → measure divergence   | Gender, Occupation, Disability        | [Link](https://huggingface.co/datasets/LanguageShades/BiasShades) | [Social Bias Probing: Fairness Benchmarking for Language Models](https://arxiv.org/abs/2311.09090) |
+| **BiasShades** | ????                           | gender, occupation, disability     | ???  | [Link](https://huggingface.co/datasets/LanguageShades/BiasShades) | Marchiori Manerba et al. [Social Bias Probing: Fairness Benchmarking for Language Models](https://arxiv.org/abs/2311.09090) |
 
 #### Unmasked Sentences
 
-These datasets evaluate bias in sentence-based models by providing complete sentences with substituted terms for different social groups. They analyze disparities in sentence-level associations
-and performance.
+These datasets evaluate bias in sentence-based models by providing complete sentences with substituted terms for different social groups. They analyze disparities in sentence-level associations and performance.
 
 | Dataset | Size | Bias Type | Metric |URL | Reference
 | --- | --- | --- | --- | --- | --- |
@@ -38,6 +37,8 @@ and performance.
 | **PANDA** | 98,583 | age, gender, race | Pseudo-log-likelihood |[Link](https://github.com/facebookresearch/ResponsibleNLP) | Rebecca Qian et al. [Perturbation Augmentation for Fairer NLP](https://arxiv.org/abs/2205.12586). 2022. arXiv: 2205.12586 [cs.CL].|
 | **Equity Evaluation Corpus (EEC)** | 4,320 | gender, religion | Pseudo-log-likelihood |[Link](http://saifmohammad.com/WebPages/Biases-SA.html)| Svetlana Kiritchenko and Saif M. Mohammad. [Examining Gender and Race Bias in Two Hundred Sentiment Analysis Systems](https://arxiv.org/abs/1805.04508). 2018. arXiv: 1805.04508 [cs.CL].|
 | **Bias-NLI** | 5,712,066 | gender, nationality, race | Net Neutral, Fraction Neutral, Threshold-based |[Link](https://github.com/sunipa/On-Measuring-and-Mitigating-Biased-Inferences-of-Word-Embeddings)| Sunipa Dev et al. [On Measuring and Mitigating Biased Inferences of Word Embeddings](https://arxiv.org/abs/1908.09369). 2019. arXiv: 1908.09369 [cs.CL].|
+| **Hidden Bias**| ??                  | race, gender | ??              | [Link]| Marchiori Manerba et al. [Social Bias Probing: Fairness Benchmarking for Language Models](https://arxiv.org/abs/2311.09090)](https://arxiv.org/abs/2311.09090) |
+| **SoFa**       | ??           | religion, disability | ??  |  [Link] | Marchiori Manerba et al., [Social Bias Probing: Fairness Benchmarking for Language Models](https://arxiv.org/abs/2311.09090) |
 
 ### Generative Datasets
 Generative Datasets, are used to create new data, that could include biased or unbiased examples, typically by generating a variety of instances that simulate real-world scenarios, often based on existing data. These datasets often allow for a more dynamic evaluation since the data can be generated or sampled in different ways, offering more control over the variables involved in bias assessment.
@@ -53,6 +54,7 @@ These datasets use text generation tasks to measure biases in model completions.
 | **HolisticBias** | 460,000 | age, disability, gender, nationality, physical appearance, race, religion, cultural, sexual orientation, socioeconomic status | Token Likelihood Bias, Generation Bias, Offensiveness Bias |[Link](https://github.com/facebookresearch/ResponsibleNLP)| Eric Michael Smith et al. ["I’m sorry to hear that": Finding New Biases in Language Models with a Holistic Descriptor Dataset](https://arxiv.org/abs/2205.09209). 2022. arXiv: 2205.09209 [cs.CL].|
 | **TrustGPT** | 9 | gender, race, religion | Toxicity, Bias, Value-Alignment |	[Link](https://github.com/HowieHwong/TrustGPT)| Yue Huang et al. [TrustGPT: A Benchmark for Trustworthy and Responsible Large Language Models](https://arxiv.org/abs/2306.11507). 2023. arXiv: 2306.11507 [cs.CL].|
 | **HONEST** | 420 | gender | HONEST score |[Link](https://github.com/MilaNLProc/honest)| Debora Nozza, Federico Bianchi, and Dirk Hovy. [HONEST: Measuring Hurtful Sentence Completion in Language Models](https://aclanthology.org/2021.naacl-main.191/). In: Proceedings of the 2021 Conference of the North American Chapter of the Association for Computational Linguistics: Human Language Technologies. Ed. by Kristina Toutanova et al. Online: Association for Computational Linguistics, June 2021, pp. 2398–2406. doi: 10.18653 / v1 / 2021 . naacl-main. 191.|
+| **GPTBIAS**   | ?? | Intersectional (9 categories)      | ??| [Link] | [Zhao et al., *GPTBIAS* (2023)](https://arxiv.org/abs/2312.06315) |
 
 #### Question-Answering
 
@@ -62,6 +64,14 @@ These datasets evaluate model biases in question-answering tasks, where models a
 | --- | --- | --- | --- | --- | --- |
 | **BBQ** | 58,492 | age, disability, gender, nationality, physical appearance, race, religion, sexual orientation, socioeconomic status | Accuracy, sDIS, sAMB |[Link](https://github.com/nyu-mll/BBQ)| Alicia Parrish et al. [BBQ: A Hand-Built Bias Benchmark for Question Answering](https://arxiv.org/abs/2110.08193). 2022. arXiv: 2110.08193 [cs.CL].|
 | **UnQover** | - | gender, nationality, religion, sexual orientation | Bias Score, Comparative Bias Score, Subject-Attribute Bias, Model Bias Intensity, Count-Based Metric |	[Link](https://github.com/allenai/unqover)| Tao Li et al. [UnQovering Stereotyping Biases via Underspecified Questions](https://arxiv.org/abs/2010.02428). 2020. arXiv: 2010.02428 [cs.CL].|
+| **SR‑LLM**    | ?? | religion, nationality|  ??        |         [Link]      | [Raza et al., *SR‑LLM* (2024)](https://arxiv.org/abs/2404.01399) |
+| **Parity**    | ?? | 16 domains (incl. colonialism)     |  ??          |   [Link]     | [Simpson et al., *Parity* (2024)](https://link.springer.com/article/10.1007/s43681-024-00613-4) |
+
+#### C. Role‑Playing / Interactive
+| Dataset | Size | Bias Type | Metric | URL | Reference
+| --- | --- | --- | --- | --- | --- |
+| **BiasLens**  | ?? | Race, Gender, Disability            |            | [Link]           | Race, Gender, Disability    | [Li et al., *BiasLens* (2024)](https://arxiv.org/abs/2411.00585) |
+| **ROBBIE**    |?? | 12 demographic axes                 |              |    [Link]      | [Esiobu et al., *ROBBIE* (2023)](https://arxiv.org/abs/2311.18140) |
 
 ## Graph Datasets
 
