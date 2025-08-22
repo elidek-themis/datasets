@@ -39,8 +39,12 @@ and performance.
 | Bias-NLI | 5,712,066 | gender, nationality, race | Net Neutral, Fraction Neutral, Threshold-based |[Link](https://github.com/sunipa/On-Measuring-and-Mitigating-Biased-Inferences-of-Word-Embeddings)| Sunipa Dev et al. [On Measuring and Mitigating Biased Inferences of Word Embeddings](https://arxiv.org/abs/1908.09369). 2019. arXiv: 1908.09369 [cs.CL].|
 
 ### Generative Datasets
+Generative Datasets, are used to create new data, that could include biased or unbiased examples, typically by generating a variety of instances that simulate real-world scenarios, often based on existing data. These datasets often allow for a more dynamic evaluation since the data can be generated or sampled in different ways, offering more control over the variables involved in bias assessment.
 
 #### Sentence Completion
+These datasets use text generation tasks to measure biases in model completions. Prompts or templates are provided, and the generated output is evaluated for potential social biases.
+
+
 | Dataset | Size | Bias Type | Metric | URL | Reference
 | --- | --- | --- | --- | --- | --- |
 | Real Toxicity Prompts | 100,000 | disability, gender, nationality, physical appearance, race, religion, sexual orientation, cultural | Expected Max Toxicity, Toxicity Probability |[Link](https://toxicdegeneration.allenai.org)| Samuel Gehman et al. [RealToxicityPrompts: Evaluating Neural Toxic Degeneration in Language Models](https://arxiv.org/abs/2009.11462). 2020. arXiv: 2009.11462 [cs.CL].|
@@ -50,6 +54,9 @@ and performance.
 | HONEST | 420 | gender | HONEST score |[Link](https://github.com/MilaNLProc/honest)| Debora Nozza, Federico Bianchi, and Dirk Hovy. [HONEST: Measuring Hurtful Sentence Completion in Language Models](https://aclanthology.org/2021.naacl-main.191/). In: Proceedings of the 2021 Conference of the North American Chapter of the Association for Computational Linguistics: Human Language Technologies. Ed. by Kristina Toutanova et al. Online: Association for Computational Linguistics, June 2021, pp. 2398–2406. doi: 10.18653 / v1 / 2021 . naacl-main. 191.|
 
 #### Question-Answering
+
+These datasets evaluate model biases in question-answering tasks, where models are expected to select or generate unbiased and fair answers for diverse demographics.
+
 | Dataset | Size | Bias Type | Metric | URL | Reference
 | --- | --- | --- | --- | --- | --- |
 | BBQ | 58,492 | age, disability, gender, nationality, physical appearance, race, religion, sexual orientation, socioeconomic status | Accuracy, sDIS, sAMB |[Link](https://github.com/nyu-mll/BBQ)| Alicia Parrish et al. [BBQ: A Hand-Built Bias Benchmark for Question Answering](https://arxiv.org/abs/2110.08193). 2022. arXiv: 2110.08193 [cs.CL].|
