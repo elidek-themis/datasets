@@ -1,10 +1,12 @@
 # Bias Evaluation Datasets
 
-This document provides details for various datasets used for evaluating bias in language models that are available in the related work. The taxonomy is based on the work of Isabel O Gallegos et al. [“Bias and fairness in large language models: A survey”](https://arxiv.org/abs/2309.00770).
+This document provides details for various datasets used for evaluating bias in language models that are available in the related work. The taxonomy is based on the work of Isabel O Gallegos et al. [“Bias and fairness in large language models: A survey”](https://arxiv.org/abs/2309.00770). It also includes datasets that are used for evaluating bias in graphs from social networks and the web.
 
-## Counterfactual Inputs Datasets
+## LLM Datasets
 
-### Masked Tokens
+### Counterfactual Inputs Datasets
+
+#### Masked Tokens
 | Dataset | Size | Bias Type | Metric | URL | Reference
 | --- | --- | --- | --- | --- | --- |
 | WinoGender | 720 | gender | Coref | [Link](https://github.com/rudinger/winogender-schemas)| Rachel Rudinger et al. [Gender Bias in Coreference Resolution](https://arxiv.org/abs/1804.09301). 2018. arXiv: 1804 . 09301 [cs.CL].|
@@ -16,7 +18,7 @@ This document provides details for various datasets used for evaluating bias in 
 | StereoSet | 16,995 | gender, race, profession, religion | lms, ss, iCAT |[Link1](https://github.com/McGill-NLP/bias-bench), [Link2](https://github.com/moinnadeem/stereoset) | Moin Nadeem, Anna Bethke, and Siva Reddy. [StereoSet: Measuring stereotypical bias in pretrained language models](https://arxiv.org/abs/2004.09456.). 2020. arXiv: 2004.09456 [cs.CL].|
 | BEC-Pro | 5,400 | gender | Log likelihood |	[Link](https://github.com/marionbartl/gender-bias-BERT) | Marion Bartl, Malvina Nissim, and Albert Gatt. [Unmasking Contextual Stereotypes: Measuring and Mitigating BERT’s Gender Bias](https://arxiv.org/abs/2010.14534). 2020. arXiv: 2010.14534 [cs.CL].|
 
-### Unmasked Sentences
+#### Unmasked Sentences
 | Dataset | Size | Bias Type | Metric |URL | Reference
 | --- | --- | --- | --- | --- | --- |
 | CrowS-Pairs | 1,508 | age, disability, gender, nationality, physical appearance, race, religion, sexual orientation, socioeconomic status | Pseudo-log-likelihood |[Link](https://github.com/nyu-mll/crows-pairs/) |  Nikita Nangia et al. [CrowS-Pairs: A Challenge Dataset for Measuring Social Biases in Masked Language Models](https://arxiv.org/abs/2010.00133). 2020. arXiv: 2010.00133 [cs.CL]|
@@ -27,9 +29,9 @@ This document provides details for various datasets used for evaluating bias in 
 | Equity Evaluation Corpus (EEC) | 4,320 | gender, religion | Pseudo-log-likelihood |[Link](http://saifmohammad.com/WebPages/Biases-SA.html)| Svetlana Kiritchenko and Saif M. Mohammad. [Examining Gender and Race Bias in Two Hundred Sentiment Analysis Systems](https://arxiv.org/abs/1805.04508). 2018. arXiv: 1805.04508 [cs.CL].|
 | Bias-NLI | 5,712,066 | gender, nationality, race | Net Neutral, Fraction Neutral, Threshold-based |[Link](https://github.com/sunipa/On-Measuring-and-Mitigating-Biased-Inferences-of-Word-Embeddings)| Sunipa Dev et al. [On Measuring and Mitigating Biased Inferences of Word Embeddings](https://arxiv.org/abs/1908.09369). 2019. arXiv: 1908.09369 [cs.CL].|
 
-## Generative Datasets
+### Generative Datasets
 
-### Sentence Completion
+#### Sentence Completion
 | Dataset | Size | Bias Type | Metric | URL | Reference
 | --- | --- | --- | --- | --- | --- |
 | Real Toxicity Prompts | 100,000 | disability, gender, nationality, physical appearance, race, religion, sexual orientation, cultural | Expected Max Toxicity, Toxicity Probability |[Link](https://toxicdegeneration.allenai.org)| Samuel Gehman et al. [RealToxicityPrompts: Evaluating Neural Toxic Degeneration in Language Models](https://arxiv.org/abs/2009.11462). 2020. arXiv: 2009.11462 [cs.CL].|
@@ -38,8 +40,22 @@ This document provides details for various datasets used for evaluating bias in 
 | TrustGPT | 9 | gender, race, religion | Toxicity, Bias, Value-Alignment |	[Link](https://github.com/HowieHwong/TrustGPT)| Yue Huang et al. [TrustGPT: A Benchmark for Trustworthy and Responsible Large Language Models](https://arxiv.org/abs/2306.11507). 2023. arXiv: 2306.11507 [cs.CL].|
 | HONEST | 420 | gender | HONEST score |[Link](https://github.com/MilaNLProc/honest)| Debora Nozza, Federico Bianchi, and Dirk Hovy. [HONEST: Measuring Hurtful Sentence Completion in Language Models](https://aclanthology.org/2021.naacl-main.191/). In: Proceedings of the 2021 Conference of the North American Chapter of the Association for Computational Linguistics: Human Language Technologies. Ed. by Kristina Toutanova et al. Online: Association for Computational Linguistics, June 2021, pp. 2398–2406. doi: 10.18653 / v1 / 2021 . naacl-main. 191.|
 
-### Question-Answering
+#### Question-Answering
 | Dataset | Size | Bias Type | Metric | URL | Reference
 | --- | --- | --- | --- | --- | --- |
 | BBQ | 58,492 | age, disability, gender, nationality, physical appearance, race, religion, sexual orientation, socioeconomic status | Accuracy, sDIS, sAMB |[Link](https://github.com/nyu-mll/BBQ)| Alicia Parrish et al. [BBQ: A Hand-Built Bias Benchmark for Question Answering](https://arxiv.org/abs/2110.08193). 2022. arXiv: 2110.08193 [cs.CL].|
 | UnQover | - | gender, nationality, religion, sexual orientation | Bias Score, Comparative Bias Score, Subject-Attribute Bias, Model Bias Intensity, Count-Based Metric |	[Link](https://github.com/allenai/unqover)| Tao Li et al. [UnQovering Stereotyping Biases via Underspecified Questions](https://arxiv.org/abs/2010.02428). 2020. arXiv: 2010.02428 [cs.CL].|
+
+## Graph Datasets
+
+| **Dataset**                   | **Nodes** | **Edges** | **Protected Attribute(s)** | **Description**                                                                                                                                 | **Source**                                                                                                                                                               |
+| ----------------------------- | --------: | --------: | -------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| **Political Blogs**           |      1222 |     16714 | Political leaning          | Directed hyperlinks between US political blogs (Feb 2005). Labels: 0 = liberal, 1 = conservative.                                               | [https://websites.umich.edu/\~mejn/netdata/](https://websites.umich.edu/~mejn/netdata/)                                                                                  |
+| **Facebook Net**              |       155 |      1412 | Gender                     | High-school Facebook friendship network (Marseilles, 2013). Edge weight 1 = friendship, 0 = no friendship.                                      | [http://www.sociopatterns.org/datasets/high-school-contact-and-friendship-networks/](http://www.sociopatterns.org/datasets/high-school-contact-and-friendship-networks/) |
+| **Books**                     |        92 |       374 | Political leaning          | US political book co-purchase network. Labels: liberal or conservative (neutral removed).                                                       | [https://websites.umich.edu/\~mejn/netdata/](https://websites.umich.edu/~mejn/netdata/)                                                                                  |
+| **Twitter Political Retweet** |     18470 |     48053 | Political leaning          | Directed retweet network (political). Labels: 1 = group A, 0 = group B.                                                                         | [https://networkrepository.com/](https://networkrepository.com/)                                                                                                         |
+| **Drug Net**                  |       190 |       270 | Gender                     | Directed acquaintanceship network among Hartford drug users from ethnographic study.                                                            | [https://sites.google.com/site/ucinetsoftware/datasets/covert-networks/drugnet](https://sites.google.com/site/ucinetsoftware/datasets/covert-networks/drugnet)           |
+| **Friendship Net**            |       127 |       396 | Gender                     | Directed reported friendships in a high school (Marseilles, 2013).                                                                              | [http://www.sociopatterns.org/datasets/high-school-contact-and-friendship-networks/](http://www.sociopatterns.org/datasets/high-school-contact-and-friendship-networks/) |
+| **Facebook Ego**              |      4039 |     88234 | Gender                     | Ego-networks with circles and node features from Facebook survey participants.                                                                  | [SNAP](https://snap.stanford.edu/data/ego-Facebook.html)                                                                                                                 |
+| **Deezer Europe**             |     28281 |     92752 | Gender                     | Music social network (Europe). Node attributes include gender.                                                                                  | [SNAP](https://snap.stanford.edu/data/feather-deezer-social.html)                                                                                                        |
+
