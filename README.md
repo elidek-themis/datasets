@@ -6,7 +6,12 @@ This document provides details for various datasets used for evaluating bias in 
 
 ### Counterfactual Inputs Datasets
 
+Counterfactual Inputs Datasets focus on modifying specific elements of an input while keeping other aspects constant to examine how the model responds to changes in sensitive attributes (such as race, gender, etc.). The goal is to evaluate how the model behaves when these sensitive attributes are altered or missing, while keeping the rest of the input remains the same. 
+
 #### Masked Tokens
+
+These evaluation datasets use masked language modeling to evaluate biases by requiring models to predict missing words in sentences. They aim to evaluate model fairness by measuring how token probabilities shift when certain counterfactual attributes (e.g., gender, race, and other sensitive attributes) are perturbed within a sentence. They are often associated with tasks like coreference resolution or fill-in-the-blank completions
+
 | Dataset | Size | Bias Type | Metric | URL | Reference
 | --- | --- | --- | --- | --- | --- |
 | WinoGender | 720 | gender | Coref | [Link](https://github.com/rudinger/winogender-schemas)| Rachel Rudinger et al. [Gender Bias in Coreference Resolution](https://arxiv.org/abs/1804.09301). 2018. arXiv: 1804 . 09301 [cs.CL].|
@@ -19,6 +24,10 @@ This document provides details for various datasets used for evaluating bias in 
 | BEC-Pro | 5,400 | gender | Log likelihood |	[Link](https://github.com/marionbartl/gender-bias-BERT) | Marion Bartl, Malvina Nissim, and Albert Gatt. [Unmasking Contextual Stereotypes: Measuring and Mitigating BERT’s Gender Bias](https://arxiv.org/abs/2010.14534). 2020. arXiv: 2010.14534 [cs.CL].|
 
 #### Unmasked Sentences
+
+These datasets evaluate bias in sentence-based models by providing complete sentences with substituted terms for different social groups. They analyze disparities in sentence-level associations
+and performance.
+
 | Dataset | Size | Bias Type | Metric |URL | Reference
 | --- | --- | --- | --- | --- | --- |
 | CrowS-Pairs | 1,508 | age, disability, gender, nationality, physical appearance, race, religion, sexual orientation, socioeconomic status | Pseudo-log-likelihood |[Link](https://github.com/nyu-mll/crows-pairs/) |  Nikita Nangia et al. [CrowS-Pairs: A Challenge Dataset for Measuring Social Biases in Masked Language Models](https://arxiv.org/abs/2010.00133). 2020. arXiv: 2010.00133 [cs.CL]|
