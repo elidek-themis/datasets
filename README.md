@@ -92,4 +92,4 @@ Several real-world network datasets with binary node attributes. For each datase
 
 | Synthetic Datasets | Description | Code|
 | :--- | :--- | :--- |
-| **Variant of Stochastic Block Model** | A variant of the Stochastic Block Model that incorporates fairness constraints. Introduced by Kleindessner et al. in [*Guarantees for Spectral Clustering with Fairness Constraints*](https://proceedings.mlr.press/v97/kleindessner19b/kleindessner19b.pdf). | [link](graphs/v_sbm.py)
+| **Variant of Stochastic Block Model** | A variant of the Stochastic Block Model that incorporates fairness constraints. Introduced by Kleindessner et al. in [*Guarantees for Spectral Clustering with Fairness Constraints*](https://proceedings.mlr.press/v97/kleindessner19b/kleindessner19b.pdf). | [Link](graphs/v_sbm.py)
