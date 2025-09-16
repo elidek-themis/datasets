@@ -10,5 +10,5 @@ wheels/
 .venv
 
 # Development
-notebooks/prototyping.ipynb
+.vscode
 .env
