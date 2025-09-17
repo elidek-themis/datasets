@@ -6,3 +6,5 @@ This repository provides details for various datasets used for evaluating bias i
 [LLM Datasets](llms)
 
 [Graph Datasets](graphs)
+
+[Clustering-Classification Datasets](clustering_classification)
